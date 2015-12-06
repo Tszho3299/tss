@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Q_Radio</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_radio_ui">RadioUi</string>
+    <string name="title_activity_rcoradio">Rcoradio</string>
+    <string name="title_activity_cateradio">Cateradio</string>
+    <string name="title_activity_moreradio">Moreradio</string>
+    <string name="title_activity_music_ui">MusicUi</string>
+    <string name="title_activity_rcomradio">Rcomradio</string>
+    <string name="title_activity_detail">Detail</string>
+    <string name="title_activity_getdataphp">Getdataphp</string>
+
+</resources>
