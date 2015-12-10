@@ -69,7 +69,7 @@ public class Cateradio extends Fragment {
 						// groupPosition=" + groupPosition);
 						Intent category = null;
 						category = new Intent(main, Detail.class);
-						Log.v("zz", String.valueOf(groupPosition));
+						//Log.v("zz", String.valueOf(groupPosition));
 
 						// category.putExtra("cate", groupPosition);
 						// startActivity(category);
@@ -84,7 +84,7 @@ public class Cateradio extends Fragment {
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 
-				Log.v("zs", String.valueOf(childPosition));
+				//Log.v("zs", String.valueOf(childPosition));
 
 				// Toast.makeText( main, "position=" + groupPosition+
 				// Toast.LENGTH_SHORT, childPosition).show();

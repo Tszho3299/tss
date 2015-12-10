@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name="com.doysoft.q_radio.RadioUi"
-            android:label="@string/title_activity_radio_ui"
+            android:label="@string/app_name"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,15 +45,15 @@
         </activity>
         <activity
             android:name="com.doysoft.q_radio.Cateradio"
-            android:label="@string/title_activity_cateradio" >
+             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.doysoft.q_radio.Moreradio"
-            android:label="@string/title_activity_moreradio" >
+             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.doysoft.q_radio.MusicUi"
-            android:label="@string/title_activity_music_ui"
+             android:label="@string/app_name"
             android:launchMode="singleTask" >
         </activity>
         <activity
@@ -62,11 +62,11 @@
         </activity>
         <activity
             android:name="com.doysoft.q_radio.Detail"
-            android:label="@string/title_activity_detail" >
+             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.doysoft.q_radio.Getdataphp"
-            android:label="@string/title_activity_getdataphp" >
+             android:label="@string/app_name" >
         </activity>
     </application>
 

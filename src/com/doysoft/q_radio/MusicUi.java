@@ -27,7 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+
+import com.Q_radio.lib.TinyDB;
 import com.doysoft.app.radio.R;
+
 import io.vov.vitamio.LibsChecker;
 
 
@@ -132,6 +135,12 @@ public class MusicUi extends Activity implements OnCheckedChangeListener{
 			title=this.getIntent().getStringExtra("text");	
 			texttitle=this.getIntent().getStringExtra("texttitle");	
             music.setText(texttitle);
+            
+            TinyDB tb = new TinyDB(this.getApplicationContext());
+   		     tb.putString("play_url", texttitle);
+            
+            
+            
 			if(title ==null){
         	  title="look";
           }
@@ -165,6 +174,8 @@ public class MusicUi extends Activity implements OnCheckedChangeListener{
 	}
 	
 	public void geturl(){
+		
+		
 		if(title.equals("look")){
 			music.setText(texttitle);
 		    if(Radioplayer.isPlaying=false){
@@ -190,9 +201,19 @@ public class MusicUi extends Activity implements OnCheckedChangeListener{
 		urlint.putExtra("action", "run");
 		urlint.putExtra("title", texttitle);
 		
+		
+		
 		startService(urlint);
-		Toast toast = Toast.makeText(MusicUi.this, "缓冲请稍后", Toast.LENGTH_SHORT);
+		String buffer_txt = this.getResources().getString(R.string.buffering);
+		Toast toast = Toast.makeText(MusicUi.this, buffer_txt, Toast.LENGTH_SHORT);
 		toast.show();
+		
+		
+		
+		
+		
+		
+		
 		}
 		
 	
@@ -231,7 +252,9 @@ public class MusicUi extends Activity implements OnCheckedChangeListener{
 	if(isNetConnected()==true){
 			
 		}else {
-			Toast.makeText(getApplicationContext(), "请检查网络是否连接",
+			
+			String chk_txt = this.getResources().getString(R.string.chk_network);
+			Toast.makeText(getApplicationContext(), chk_txt,
 				     Toast.LENGTH_SHORT).show();
 		}
 		

@@ -3,6 +3,7 @@ package com.doysoft.q_radio;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -21,7 +22,10 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import com.Q_radio.lib.TinyDB;
 import com.doysoft.app.radio.R;
+
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.MediaPlayer.OnErrorListener;
 
@@ -58,7 +62,7 @@ public class Radioplayer extends Service implements OnBufferingUpdateListener,
 		 * mMediaPlayer.setOnPreparedListener(this);
 		 */
 
-		Log.v("abcccc", "ccc");
+		
 	}
 
 	private static final String TAG = "MediaPlayerDemo";
@@ -135,7 +139,21 @@ public class Radioplayer extends Service implements OnBufferingUpdateListener,
 		Log.v("cccc", "ccc");
 		titles = intent.getStringExtra("url");
 		// String num = intent.getStringExtra("one");
+		
+		
+		/*
+		 if(titles== null || titles.equals("null") ){
+	    	
+	    	Toast toast = Toast.makeText(this.getApplicationContext(), getString(R.string.no_brocast), Toast.LENGTH_SHORT);
+			toast.show();
+			RadioUi.pause.setChecked(true);
+			
+			return super.onStartCommand(intent, flags, startId);
+	    }
+		 */
+		
 		texttitle = intent.getStringExtra("title");
+		 
 
 		if (action.equals(run)) {
 			// onDestroy();

@@ -54,7 +54,10 @@
             android:id="@+id/textname"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_toRightOf="@+id/tgbtn"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="78dp"
+         
+            android:layout_toRightOf="@+id/textname"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/white"
             android:textSize="16sp" />

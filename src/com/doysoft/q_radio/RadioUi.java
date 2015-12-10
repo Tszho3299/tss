@@ -26,8 +26,10 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.Q_radio.lib.TinyDB;
 import com.astuetz.PagerSlidingTabStrip;
 import com.doysoft.app.radio.R;
 
@@ -67,6 +69,7 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 		btn = (Button) findViewById(R.id.btnui);
 		btn.setOnClickListener(this);
 		text = (TextView) findViewById(R.id.textname);
+		text.setText(R.string.status_stop);
 		pause = (ToggleButton) findViewById(R.id.tgbtn);
 		pause.setOnCheckedChangeListener(this);
 		tabs.setViewPager(pager);
@@ -77,7 +80,8 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-
+         
+		
 		Intent intent = null;
 		intent = new Intent(this, MusicUi.class);
 		intent.putExtra("text", "look");
@@ -90,19 +94,33 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		// TODO Auto-generated method stub
+		
+		
+		
+		   TinyDB tb = new TinyDB(this.getApplicationContext());
+		   String play_url = tb.getString("play_url");
+		   if(play_url.isEmpty()){
+			 	Toast toast = Toast.makeText(this.getApplicationContext(), getString(R.string.no_brocast), Toast.LENGTH_SHORT);
+				toast.show();
+				buttonView.setChecked(true);
+				
+				return;
+		   }
+		
 		if (isChecked) {
 
 			urlint = new Intent(this, Radioplayer.class);
 			urlint.putExtra("action", "pause");
+	        urlint.putExtra("url", play_url);	
 			// urlint.putExtra("num", "two");
-
+             
 			startService(urlint);
 
 		} else {
 
 			urlint = new Intent(this, Radioplayer.class);
 			urlint.putExtra("action", "play");
-
+			urlint.putExtra("url", play_url);	
 			startService(urlint);
 
 		}
@@ -143,9 +161,9 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
 			AlertDialog.Builder build = new AlertDialog.Builder(this);
-			build.setTitle("退出")
-					.setMessage("确定要退出吗？")
-					.setPositiveButton("确定",
+			build.setTitle(getString(R.string.bk_exit))
+					.setMessage(getString(R.string.bk_confirm))
+					.setPositiveButton(getString(R.string.bk_sure),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -162,7 +180,7 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 
 								}
 							})
-					.setNeutralButton("后台播放",
+					.setNeutralButton(getString(R.string.bk_playinback),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -172,7 +190,7 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 									finish();
 								}
 							})
-					.setNegativeButton("取消",
+					.setNegativeButton(getString(R.string.bk_cancel),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -246,7 +264,7 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 			// TODO Auto-generated constructor stub
 		}
 
-		private final String[] titles = { "推荐", "分类" };
+		private final String[] titles = { getString(R.string.recommend), getString(R.string.category) };
 
 		public CharSequence getPageTitle(int position) {
 			return titles[position];
@@ -299,6 +317,11 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 		setContentView(R.layout.activity_radio_ui);
 		// rContext = this.getActivity();
 		ActionBar actionBar = getActionBar();
+		
+		int titleId = getResources().getIdentifier("action_bar_title", "id", "android");
+		
+		TextView abTitle = (TextView) findViewById(titleId);
+		abTitle.setTextColor(getResources().getColor(R.color.white));
 		//actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#74B1C5")));
 		// actionBar.setDisplayHomeAsUpEnabled(true);
 		
