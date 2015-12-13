@@ -130,7 +130,10 @@ public class Radioplayer extends Service implements OnBufferingUpdateListener,
 		 */
 
 	}
-
+  
+	
+	
+	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -165,6 +168,7 @@ public class Radioplayer extends Service implements OnBufferingUpdateListener,
 			}
 			init();
 			playAudio();
+			
 		} else if (action.equals(pause)) {
 			pause();
 		} else if (action.equals(play)) {
@@ -293,15 +297,17 @@ public class Radioplayer extends Service implements OnBufferingUpdateListener,
 		 * notification.setLatestEventInfo(getApplicationContext(), "AAA", "CC",
 		 * pendingIntent); notification.flags |= Notification.FLAG_NO_CLEAR;
 		 */
-
-		int icon = R.drawable.ic;
+	
+		int icon = R.drawable.notification;
 		CharSequence tickerText = "Q_radio";
 		long when = System.currentTimeMillis();
 
 		notification = new Notification(icon, tickerText, when);
+		//notification
 		RemoteViews contentView = new RemoteViews(getPackageName(),
 				R.layout.notification_control);
-		contentView.setImageViewResource(R.id.icon, R.drawable.ic);
+		// contentView.setImageViewResource(R.drawable.icon, icon);
+		 
 		contentView.setTextViewText(R.id.titlename, texttitle);
 		notification.contentView = contentView;
 

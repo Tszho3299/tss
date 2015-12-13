@@ -28,6 +28,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
+import com.Q_radio.lib.Extra;
 import com.Q_radio.lib.TinyDB;
 import com.doysoft.app.radio.R;
 
@@ -285,6 +286,8 @@ public class MusicUi extends Activity implements OnCheckedChangeListener{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.music_ui, menu);
+		
+		
 		return true;
 	}
 
@@ -305,12 +308,27 @@ public class MusicUi extends Activity implements OnCheckedChangeListener{
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            startActivity(intent);
 	            return true;
+	        case R.id.menu_item_share:
+	        	shareApp();
+	        	break;
 	        default:
+	        	break;
 		
 		 }
 		
 		return super.onOptionsItemSelected(item);
 	}
 
-
+	public void shareApp(){
+		   
+		//int resourceId = ct.getResources().getIdentifier("string", "app_name", ct.getPackageName());
+		//CharSequence  app_name = ct.getResources().getText(R.string.app_name);
+		  String msg = getString(R.string.share_msg);
+		  String app = getString(R.string.app_name);
+		  Intent sendIntent = new Intent();
+		  sendIntent.setAction(Intent.ACTION_SEND);
+		  sendIntent.putExtra(Intent.EXTRA_TEXT,msg);
+		  sendIntent.setType("text/plain");
+		 startActivity(Intent.createChooser(sendIntent, app));
+	 }
 }

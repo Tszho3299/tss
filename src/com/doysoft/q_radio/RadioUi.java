@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.Q_radio.lib.Extra;
 import com.Q_radio.lib.TinyDB;
 import com.astuetz.PagerSlidingTabStrip;
 import com.doysoft.app.radio.R;
@@ -344,10 +345,34 @@ public class RadioUi extends FragmentActivity implements OnClickListener,
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
+		switch (item.getItemId()) {
+        case R.id.back:
+            Intent intent = new Intent(this, RadioUi.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+        case R.id.menu_item_share:
+        	shareApp();
+        	break;
+        default:
+        	break;
+	
+	 }
+	
+		
+		
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void shareApp(){
+		   
+		  String msg = getString(R.string.share_msg);
+		  String app = getString(R.string.app_name);
+		  Intent sendIntent = new Intent();
+		  sendIntent.setAction(Intent.ACTION_SEND);
+		  sendIntent.putExtra(Intent.EXTRA_TEXT,msg);
+		  sendIntent.setType("text/plain");
+		 startActivity(Intent.createChooser(sendIntent, app));
+	 }
 
 }

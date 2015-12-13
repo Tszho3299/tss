@@ -2,8 +2,10 @@ package com.doysoft.q_radio;
 
 import java.util.HashMap;
 import java.util.List;
+
 import com.Q_radio.lib.JsonRadio;
 import com.doysoft.app.radio.R;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -119,9 +121,25 @@ public class Detail extends Activity {
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            startActivity(intent);
 	            return true;
+	        case R.id.menu_item_share:
+	        	shareApp();
+	        	break;
 	        default:
+	        	break;
 		
 		 }
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void shareApp(){
+		   
+		//int resourceId = ct.getResources().getIdentifier("string", "app_name", ct.getPackageName());
+		//CharSequence  app_name = ct.getResources().getText(R.string.app_name);
+		String str = "share";
+		  Intent sendIntent = new Intent();
+		  sendIntent.setAction(Intent.ACTION_SEND);
+		  sendIntent.putExtra(Intent.EXTRA_TEXT,str);
+		  sendIntent.setType("text/plain");
+		 startActivity(Intent.createChooser(sendIntent, str));
+	 }
 }
